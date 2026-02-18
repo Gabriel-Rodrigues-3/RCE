@@ -29,15 +29,13 @@
   :root {
     --background: #0f172a;
     --foreground: #f8fafc;
-    --white: #ffffff;
-    /* Keep white as white for contrast, or use a very light gray */
+    --white: #1e293b;
     --gray-50: #1e293b;
     --gray-100: #334155;
     --gray-200: #475569;
     --gray-600: #cbd5e1;
-    /* Lighter gray for better text visibility */
-    --gray-800: #f1f5f9;
-    --gray-900: #f8fafc;
+    --gray-800: #111827;
+    --gray-900: #020617;
     --glass: rgba(15, 23, 42, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
   }
@@ -2176,13 +2174,23 @@ td {
 }
 
 .docs-table tr:not(thead tr) {
-  background: rgba(255, 255, 255, 0.5);
+  background: white;
   transition: all 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .docs-table tr:not(thead tr) {
+    background: rgba(30, 41, 59, 0.7);
+  }
+
+  .docs-table tr:not(thead tr):hover {
+    background: rgba(51, 65, 85, 0.9);
+  }
 }
 
 .docs-table tr:not(thead tr):hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.8);
+  background: #f8fafc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -2192,7 +2200,14 @@ td {
 
 .docs-table tr.near-expiry {
   border-left: 4px solid var(--danger);
-  background: rgba(254, 242, 242, 0.6);
+  background: #fff5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .docs-table tr.near-expiry {
+    background: rgba(127, 29, 29, 0.3);
+    border-color: #ef4444;
+  }
 }
 
 .doc-title {
@@ -2203,7 +2218,7 @@ td {
 
 .doc-title strong {
   font-size: 0.95rem;
-  color: var(--gray-800);
+  color: var(--foreground);
 }
 
 .status-pill {
@@ -2218,27 +2233,55 @@ td {
 
 .bg-danger-light {
   background: #fee2e2;
+  color: #991b1b;
 }
 
 .bg-warning-light {
   background: #fef3c7;
+  color: #92400e;
 }
 
 .bg-success-light {
   background: #d1fae5;
+  color: #065f46;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-danger-light {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+  }
+
+  .bg-warning-light {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+  }
+
+  .bg-success-light {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+  }
 }
 
 .file-name-pill {
   font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.6rem;
   background: var(--gray-100);
-  border-radius: 4px;
-  color: var(--gray-600);
-  max-width: 150px;
+  border-radius: 6px;
+  color: var(--gray-700);
+  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .file-name-pill {
+    background: #334155;
+    color: #cbd5e1;
+  }
 }
 
 .actions-cell {
