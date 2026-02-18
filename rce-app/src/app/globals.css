@@ -2444,14 +2444,19 @@ td {
 
   .alert-item,
   .recent-item {
-    background: var(--gray-800);
-    border-color: var(--gray-700);
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .alert-item strong,
+  .recent-item strong {
+    color: #ffffff;
   }
 
   .alert-item:hover,
   .recent-item:hover {
-    background: var(--gray-700);
-    border-color: var(--gray-600);
+    background: #334155;
+    border-color: #475569;
   }
 }
 
