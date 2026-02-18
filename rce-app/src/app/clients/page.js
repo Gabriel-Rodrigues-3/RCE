@@ -264,6 +264,53 @@ export default function ClientsPage() {
     setPendingAssociations(pendingAssociations.filter(a => a.temp_id !== tempId));
   };
 
+  const handleCreateManualClient = async () => {
+    if (!newClientName || !newClientContract) {
+      alert("Por favor, preencha o nome do cliente e o número do contrato.");
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      // 1. Create client
+      const { data: client, error: clientErr } = await supabase.from('customers').insert({
+        name: newClientName,
+        contract_number: newClientContract,
+        status: 'Ativo'
+      });
+
+      if (clientErr) throw clientErr;
+      const newClientId = client[0].id;
+
+      // 2. Create products and associations
+      if (pendingAssociations.length > 0) {
+        const associations = pendingAssociations.map(a => ({
+          customer_id: newClientId,
+          product_id: a.product_id,
+          custom_price: a.price,
+          custom_name: a.product_name,
+          custom_description: a.product_description,
+          custom_brand: a.brand
+        }));
+
+        const { error: assocErr } = await supabase.from('customer_products').insert(associations);
+        if (assocErr) throw assocErr;
+      }
+
+      alert("Cliente e produtos criados com sucesso!");
+      setShowManualAddModal(false);
+      setNewClientName('');
+      setNewClientContract('');
+      setPendingAssociations([]);
+      fetchClients();
+    } catch (error) {
+      console.error("Save error:", error);
+      alert("Erro ao salvar os dados.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const handleSaveExtracted = async () => {
     if (!newClientName || !newClientContract) {
       alert("Por favor, preencha o nome do cliente e o número do contrato.");

@@ -64,6 +64,13 @@ export default function Sidebar({ onLogout }) {
           <LogOut size={20} />
           {isOpen && <span>Sair</span>}
         </div>
+        {isOpen && <div style={{
+          padding: '10px 20px',
+          fontSize: '0.7rem',
+          opacity: 0.4,
+          textAlign: 'center',
+          marginTop: 'auto'
+        }}>v1.2.0</div>}
       </div>
 
     </div>

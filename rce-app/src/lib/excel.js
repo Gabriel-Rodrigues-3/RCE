@@ -8,10 +8,11 @@ const fs = require('fs');
  * @returns {Promise<string>} - Path to the generated file
  */
 async function populateBiddingTemplate(items) {
-    const templatePath = "C:\\Users\\Usuario\\Downloads\\RCE\\SOMAS\\SOMAS PADRÃO.xlsx";
+    const templatePath = path.join(process.cwd(), 'public', 'templates', 'SOMAS_PADRAO.xlsx');
 
     if (!fs.existsSync(templatePath)) {
-        throw new Error("Template de Excel não encontrado no caminho especificado.");
+        console.error("Template path not found:", templatePath);
+        throw new Error("Template de Excel não encontrado no servidor.");
     }
 
     const workbook = new ExcelJS.Workbook();
