@@ -70,7 +70,7 @@ export default function Sidebar({ onLogout }) {
           opacity: 0.4,
           textAlign: 'center',
           marginTop: 'auto'
-        }}>v1.2.0</div>}
+        }}>v1.2.1</div>}
       </div>
 
     </div>
