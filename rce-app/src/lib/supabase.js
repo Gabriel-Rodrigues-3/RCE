@@ -69,7 +69,7 @@ export const supabase = {
             insert: (data) => {
                 const query = {
                     _data: data,
-                    _doSelect: false,
+                    _doSelect: true,
                     select: function () {
                         this._doSelect = true;
                         return this;
