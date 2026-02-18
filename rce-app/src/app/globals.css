@@ -385,13 +385,35 @@ td {
 
 .btn.primary {
   background: var(--primary);
-  color: var(--white);
+  color: #ffffff;
+  /* Always use white for primary buttons */
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn.primary {
+    background: var(--accent);
+    /* More vibrant blue for dark mode */
+    color: #ffffff;
+  }
 }
 
 .btn.secondary {
   background: var(--white);
   color: var(--primary);
   border: 1px solid var(--gray-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn.secondary {
+    background: #1e293b;
+    color: #cbd5e1;
+    border-color: #334155;
+  }
+
+  .btn.secondary:hover {
+    background: #334155;
+    color: #ffffff;
+  }
 }
 
 .btn.full {
